@@ -1,127 +1,91 @@
 import Link from 'next/link';
-import type { FC } from 'react';
-import { Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 
-const Footer: FC = () => {
-  const footerSections = [
-    {
-      title: "Careers Main Page",
-      links: [
-        { name: "Applicant Login", href: "https://homedepot.wd5.myworkdayjobs.com/en-US/CareerDepotCanada/login", external: true, className: "applicant-login-link" },
-        { name: "Current Associates", href: "/associate-portal" },
-        { name: "Version Française", href: "/fr", special: true }
-      ]
-    },
-    {
-      title: "About Us",
-      links: [
-        { name: "Career Growth", href: "/about-us/career-growth" },
-        { name: "Our Benefits", href: "/about-us/our-benefits" },
-        { name: "Our Culture", href: "/about-us/our-culture" },
-        { name: "Social Responsibility", href: "/about-us/social-responsibility" }
-      ]
-    },
-    {
-      title: "Career Areas",
-      links: [
-        { name: "Corporate", href: "/career-areas/corporate-opportunities" },
-        { name: "Early Talent", href: "/career-areas/early-talent" },
-        { name: "Field", href: "/career-areas/field" },
-        { name: "Retail Management", href: "/career-areas/retail-management-opportunities" },
-        { name: "Retail Store", href: "/career-areas/retail-store-opportunities" }
-      ]
-    },
-    {
-      title: "Search Jobs",
-      links: [
-        { name: "View Jobs On A Map", href: "/jobs-on-a-map" },
-        { name: "Jobs By Location", href: "/location" },
-        { name: "Featured Jobs", href: "/featured-jobs" }
-      ]
-    }
-  ];
-
+const Footer: React.FC = () => {
   return (
-    <footer className="footer-wrapper bg-white">
-      <div className="main-container">
-        {footerSections.map((section, index) => (
-          <div key={section.title} className="footer-column">
-            <h3>
-              {section.title === "Search Jobs" ? (
-                <Link href="/job-search">{section.title}</Link>
-              ) : (
-                section.title
-              )}
-            </h3>
-            <ul>
-              {section.links.map((link) => (
-                <li key={link.name}>
-                  {link.special ? (
-                    <Link href={link.href} aria-label="Press enter to open the French version of the site">
-                      {link.name}
-                    </Link>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className={link.className}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noreferrer" : undefined}
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                  {link.name === "Featured Jobs" && (
-                    <div className="footer-social-icons">
-                      <Link
-                        href="https://www.facebook.com/homedepotcanada"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Press enter to visit our Facebook page"
-                      >
-                        <Facebook size={20} />
-                      </Link>
-                      <Link
-                        href="https://www.linkedin.com/company/the-home-depot-canada/"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Press enter to visit our LinkedIn page"
-                      >
-                        <Linkedin size={20} />
-                      </Link>
-                      <Link
-                        href="https://www.instagram.com/homedepotcanada/"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Press enter to visit our Instagram page"
-                      >
-                        <Instagram size={20} />
-                      </Link>
-                      <Link
-                        href="https://www.youtube.com/homedepotcanada"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Press enter to visit our YouTube page"
-                      >
-                        <Youtube size={20} />
-                      </Link>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
+    <>
+      {/* EEO Statement */}
+      <div className="eeo-strip">
+        <div className="eeo-main-container">
+          <div className="shortEeoStatement">
+            We strive to maintain a culture that welcomes everyone, and we believe it helps us achieve our business goals by driving excellent customer service and innovation, empowering our associates to thrive and excel, and enriching the communities in which we operate. This includes creating an environment where our associates feel welcomed, valued and respected and providing equal opportunity for all of our associates.
+            <a href="#" className="eeo-learn-more">Learn more</a>
           </div>
-        ))}
-
-        <div className="copyrights">
-          <span>&copy; 2026 Home Depot International, Inc. All Rights Reserved.</span>
-          <Link href="/terms-and-conditions">Terms & Conditions</Link>
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/associate-privacy-statement" target="_self">Associate Privacy Statement</Link>
-          <Link href="javascript:;" className="ot-sdk-show-settings">Cookie Preferences</Link>
-          <Link href="https://adverto.co/" target="_blank" rel="noreferrer">Powered by Adverto Inc.</Link>
+          <div className="fullEeoStatement" tabIndex={0}>
+            <p>For any Accessibility requests, please follow <a href="https://www.homedepot.ca/content/dam/homedepot/pdf/static/home-depot-canada-accessibility-policies.pdf" target="_blank" rel="noopener noreferrer">this link</a> to reach out to us.</p>
+          </div>
         </div>
       </div>
-    </footer>
+
+      <div className="footer-line"></div>
+
+      {/* Main Footer */}
+      <footer className="footer-wrapper">
+        <div className="main-container">
+          <div className="footer-column">
+            <h3><Link href="/">Careers Main Page</Link></h3>
+            <ul>
+              <li><a href="https://homedepot.wd5.myworkdayjobs.com/en-US/CareerDepotCanada/login" target="_blank" rel="noopener noreferrer">Applicant Login</a></li>
+              <li><Link href="/associate-portal">Current Associates</Link></li>
+              <li className="moreMargin">
+                <a href="https://careers.homedepot.ca/fr/a-propos-de-nous/formation" aria-label="Press enter to open the French version of the site">
+                  Français
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h3>About Us</h3>
+            <ul>
+              <li><Link href="/about/career-benefits">Career Growth</Link></li>
+              <li><Link href="/about/our-benefits">Our Benefits</Link></li>
+              <li><Link href="/about/our-culture">Our Culture</Link></li>
+              <li><Link href="/about/social-responsibility">Social Responsibility</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h3>Career Areas</h3>
+            <ul>
+              <li><Link href="/career-areas/corporate-opportunities">Corporate</Link></li>
+              <li><Link href="/career-areas/early-talent">Early Talent</Link></li>
+              <li><Link href="/career-areas/field">Field</Link></li>
+              <li><Link href="/career-areas/retail-management-opportunities">Retail Management</Link></li>
+              <li><Link href="/career-areas/retail-store-opportunities">Retail Store</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h3><Link href="/job-search">Search Jobs</Link></h3>
+            <ul>
+              <li><Link href="/jobs-on-a-map">View Jobs On A Map</Link></li>
+              <li><Link href="/location">Jobs By Location</Link></li>
+              <li><Link href="/featured-jobs">Featured Jobs</Link></li>
+              <ul>
+                <li><a href="https://www.facebook.com/homedepotcanada" target="_blank" rel="noopener noreferrer" aria-label="Press enter to visit our Facebook page"><i className="fab fa-facebook"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/the-home-depot-canada/" target="_blank" rel="noopener noreferrer" aria-label="Press enter to visit our LinkedIn page"><i className="fab fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/homedepotcanada/" target="_blank" rel="noopener noreferrer" aria-label="Press enter to visit our Instagram page"><i className="fab fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/homedepotcanada" target="_blank" rel="noopener noreferrer" aria-label="Press enter to visit our YouTube page"><i className="fab fa-youtube"></i></a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+
+        {/* Full-width Copyright */}
+        <div className="copyrights-fullwidth">
+          <a href="#" className="hamburger-menu footerBtn">
+            <span aria-hidden="true" className="fas fa-bars"></span>
+            <span aria-hidden="true" className="fas fa-caret-down"></span>
+          </a>
+          &copy; 2026 Home Depot International, Inc. All Rights Reserved.
+          <Link href="/terms-and-conditions">Terms & Conditions</Link>.
+          <Link href="/privacy-policy">Privacy Policy</Link>.
+          <Link href="/associate-privacy-statement" target="_self">Associate Privacy Statement</Link>.
+          <a href="javascript:;" className="ot-sdk-show-settings">Cookie Preferences</a>.
+          <a href="https://adverto.co/" target="_blank" rel="noopener noreferrer">Powered by Adverto Inc.</a>
+        </div>
+      </footer>
+    </>
   );
 };
 

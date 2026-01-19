@@ -22,7 +22,7 @@ const CareerAreas: FC = () => {
             </div>
             <div className="joinUsLeft">
               <h3 className="text-gray-600">Join Us Today!</h3>
-              <h2>
+              <h2 className="text-black">
                 Discover Your Opportunity at The Home Depot Canada
                 <label className="ada-information">Press ENTER to read the content or TAB to skip.</label>
               </h2>

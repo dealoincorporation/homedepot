@@ -7,7 +7,7 @@ const StoreLocations: FC = () => {
     <div className="content-wrapper sub-header relative">
       {/* Layered backgrounds */}
       <div className="absolute inset-0 flex">
-        <div className="flex-1 bg-black"></div>
+        <div className="flex-1" style={{ backgroundColor: '#212529' }}></div>
         <div className="w-[300px] bg-orange-600"></div>
       </div>
 

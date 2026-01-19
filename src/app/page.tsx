@@ -4,8 +4,6 @@ import StoreLocations from '@/components/StoreLocations';
 import CareerAreas from '@/components/CareerAreas';
 import FeaturedJobs from '@/components/FeaturedJobs';
 import CommunitySection from '@/components/CommunitySection';
-import EEOSection from '@/components/EEOSection';
-import Footer from '@/components/Footer';
 
 export default function HomePage() {
   return (
@@ -15,8 +13,6 @@ export default function HomePage() {
       <CareerAreas />
       <FeaturedJobs />
       <CommunitySection />
-      <EEOSection />
-      <Footer />
     </main>
   );
 }
