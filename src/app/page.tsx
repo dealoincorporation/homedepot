@@ -3,6 +3,7 @@ import HeroSection from '@/components/HeroSection';
 import StoreLocations from '@/components/StoreLocations';
 import CareerAreas from '@/components/CareerAreas';
 import FeaturedJobs from '@/components/FeaturedJobs';
+import CoreValuesAndAwards from '@/components/CoreValuesAndAwards';
 import CommunitySection from '@/components/CommunitySection';
 
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
       <StoreLocations />
       <CareerAreas />
       <FeaturedJobs />
+      <CoreValuesAndAwards />
       <CommunitySection />
     </main>
   );

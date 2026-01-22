@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 
 const Footer: React.FC = () => {
@@ -18,8 +20,67 @@ const Footer: React.FC = () => {
 
       <div className="footer-line"></div>
 
-      {/* Main Footer */}
-      <footer className="footer-wrapper">
+      {/* Mobile Footer */}
+      <footer className="md:hidden bg-white text-black w-full">
+        <div className="px-4 py-6">
+          {/* Our Benefits Section */}
+          <div className="mb-6">
+            <h3 className="text-base font-bold text-black mb-3">Our Benefits</h3>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/about/culture" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Our Culture</Link>
+              <Link href="/about/social-responsibility" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Social Responsibility</Link>
+            </div>
+          </div>
+
+          {/* Career Areas Section */}
+          <div className="mb-6">
+            <h3 className="text-base font-bold text-black mb-3">Career Areas</h3>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/career-areas/corporate-opportunities" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Corporate</Link>
+              <Link href="/career-areas/early-talent" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Early Talent</Link>
+              <Link href="/career-areas/field" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Field</Link>
+              <Link href="/career-areas/retail-management-opportunities" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Retail Management</Link>
+              <Link href="/career-areas/retail-store-opportunities" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Retail Store</Link>
+            </div>
+          </div>
+
+          {/* Search Jobs Section */}
+          <div className="mb-6">
+            <h3 className="text-base font-bold text-black mb-3">Search Jobs</h3>
+            <div className="flex flex-col gap-2.5 mb-4">
+              <Link href="/jobs-on-a-map" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">View Jobs On A Map</Link>
+              <Link href="/location" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Jobs By Location</Link>
+              <Link href="/featured-jobs" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Featured Jobs</Link>
+            </div>
+            
+            {/* Social Media Icons */}
+            <div className="flex gap-3 flex-wrap mt-4">
+              <a href="https://www.facebook.com/homedepotcanada" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" className="w-10 h-10 bg-black text-white flex items-center justify-center rounded-none no-underline transition-colors hover:bg-gray-800 text-lg">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.linkedin.com/company/the-home-depot-canada/" target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn page" className="w-10 h-10 bg-black text-white flex items-center justify-center rounded-none no-underline transition-colors hover:bg-gray-800 text-lg">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/homedepotcanada/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram page" className="w-10 h-10 bg-black text-white flex items-center justify-center rounded-none no-underline transition-colors hover:bg-gray-800 text-lg">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.youtube.com/homedepotcanada" target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube page" className="w-10 h-10 bg-black text-white flex items-center justify-center rounded-none no-underline transition-colors hover:bg-gray-800 text-lg">
+                <i className="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          {/* Bottom Section - Copyright and Legal */}
+          <div className="border-t border-gray-300 pt-4 mt-5">
+            <div className="text-[0.7rem] text-black leading-snug">
+              © 2026 Home Depot International, Inc. All Rights Reserved. <Link href="/terms-and-conditions" className="text-black no-underline hover:text-gray-600 hover:underline">Terms & Conditions</Link>. <Link href="/privacy-policy" className="text-black no-underline hover:text-gray-600 hover:underline">Privacy Policy</Link>. <Link href="/associate-privacy-statement" className="text-black no-underline hover:text-gray-600 hover:underline">Associate Privacy Statement</Link>. <a href="javascript:;" className="ot-sdk-show-settings text-black no-underline hover:text-gray-600 hover:underline">Cookie Preferences</a>. Powered by <a href="https://adverto.co/" target="_blank" rel="noopener noreferrer" className="text-black no-underline hover:text-gray-600 hover:underline">Adverto Inc.</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Desktop Footer */}
+      <footer className="footer-wrapper hidden md:block">
         <div className="main-container">
           <div className="footer-column">
             <h3><Link href="/">Careers Main Page</Link></h3>
@@ -73,10 +134,6 @@ const Footer: React.FC = () => {
 
         {/* Full-width Copyright */}
         <div className="copyrights-fullwidth">
-          <a href="#" className="hamburger-menu footerBtn">
-            <span aria-hidden="true" className="fas fa-bars"></span>
-            <span aria-hidden="true" className="fas fa-caret-down"></span>
-          </a>
           &copy; 2026 Home Depot International, Inc. All Rights Reserved.
           <Link href="/terms-and-conditions">Terms & Conditions</Link>.
           <Link href="/privacy-policy">Privacy Policy</Link>.

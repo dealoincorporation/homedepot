@@ -54,44 +54,61 @@ const AboutUs: React.FC = () => {
   return (
     <section className="px-5 py-20 bg-white w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="max-w-[85vw] mx-auto">
-        {/* Main Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+        {/* Main Content Section - Sleek Design */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-24 items-center">
           {/* Text Content - Left Side */}
-          <div className="lg:pr-4">
-            <h2 className="text-5xl font-bold mb-8 leading-tight" style={{ color: '#000000' }}>
-              LEARN. GROW. SUCCEED.
-            </h2>
+          <div className="space-y-8">
+            {/* Heading with modern typography */}
+            <div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-10 leading-[1.1] tracking-tight">
+                <span className="text-black">LEARN.</span><br />
+                <span className="text-orange-600">GROW.</span><br />
+                <span className="text-black">SUCCEED.</span>
+              </h2>
+            </div>
 
+            {/* Content with refined spacing */}
             <div className="space-y-6">
-              <p className="text-lg leading-relaxed" style={{ color: '#000000' }}>
-                At The Home Depot Canada, your journey starts with curiosity and a warm smile. If you love learning and find satisfaction in helping others, you'll discover a rewarding career here, where every day brings new opportunities to build your skills and make a real difference.
+              <p className="text-base md:text-lg !text-black leading-relaxed" style={{ color: '#000000' }}>
+                At <span className="text-orange-600 font-semibold">The Home Depot Canada</span>, your journey starts with <span className="text-orange-600 font-semibold">curiosity and a warm smile</span>. If you love learning and find satisfaction in helping others, you'll discover a <span className="text-orange-600 font-semibold">rewarding career</span> here, where every day brings new opportunities to build your skills and make a real difference.
               </p>
 
-              <p className="text-lg leading-relaxed" style={{ color: '#000000' }}>
-                As Canada's leading home improvement retailer, we thrive on the energy, expertise, and enthusiasm of our associates. That means you'll get the training and support you need to learn, grow, and succeed, no matter where you start or where you want to go.
+              <p className="text-base md:text-lg !text-black leading-relaxed" style={{ color: '#000000' }}>
+                As <span className="text-orange-600 font-semibold">Canada's leading home improvement retailer</span>, we thrive on the energy, expertise, and enthusiasm of our associates. That means you'll get the <span className="text-orange-600 font-semibold">training and support</span> you need to learn, grow, and succeed, no matter where you start or where you want to go.
               </p>
 
-              <p className="text-lg leading-relaxed" style={{ color: '#000000' }}>
-                We're committed to your development. In fact, The Home Depot Canada delivers more than 1,000,000 hours of training each year, supporting over 28,000 associates nationwide. Here, you'll be empowered to take on new challenges, expand your know-how, and celebrate your achievements as you build your career.
+              <p className="text-base md:text-lg !text-black leading-relaxed" style={{ color: '#000000' }}>
+                We're committed to your development. In fact, <span className="text-orange-600 font-semibold">The Home Depot Canada</span> delivers more than <span className="font-bold text-orange-600">1,000,000 hours</span> of training each year, supporting over <span className="font-bold text-orange-600">28,000 associates</span> nationwide. Here, you'll be empowered to take on new challenges, expand your know-how, and celebrate your achievements as you build your career.
               </p>
+            </div>
 
-              <p className="text-xl font-semibold mb-8" style={{ color: '#000000' }}>
-                Ready to start your journey? Join us and see how far you can go.
+            {/* CTA Section */}
+            <div className="pt-4">
+              <p className="text-lg md:text-xl font-semibold mb-6">
+                <span className="text-black">Ready to start your journey?</span> <span className="text-orange-600">Join us and see how far you can go.</span>
               </p>
-
-              <Link href="/job-search" className="inline-block bg-orange-600 text-white px-8 py-4 text-lg font-bold hover:bg-orange-700 transition-colors duration-300 border-0 rounded-none">
+              <Link 
+                href="/job-search" 
+                className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 text-base md:text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
                 Search open roles now
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
             </div>
           </div>
 
-          {/* Image - Right Side */}
-          <div className="flex justify-center lg:justify-end">
-            <img
-              src="/cg-01.d1d65574.webp"
-              alt="Home Depot team walking through store, representing career growth and teamwork"
-              className="w-full max-w-lg max-h-80 h-auto rounded-lg shadow-xl"
-            />
+          {/* Image - Right Side with modern styling */}
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-lg">
+              <div className="absolute -inset-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl opacity-50 blur-xl"></div>
+              <img
+                src="/cg-01.d1d65574.webp"
+                alt="Home Depot team walking through store, representing career growth and teamwork"
+                className="relative w-full h-auto rounded-xl shadow-2xl object-cover"
+              />
+            </div>
           </div>
         </div>
 

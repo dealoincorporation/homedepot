@@ -3,7 +3,16 @@ import type { FC } from 'react';
 
 const HeroSection: FC = () => {
   return (
-    <div className="top-image">
+    <div 
+      className="top-image relative overflow-hidden"
+      style={{
+        backgroundImage: "url('/images/hero/hero-image.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '400px'
+      }}
+    >
       <div className="main-container">
         <div className="intro left-aligned">
           <h1>Find Yourself A Great Career at The Home Depot Canada</h1>
