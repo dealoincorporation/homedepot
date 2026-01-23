@@ -186,6 +186,78 @@ The app can be deployed to any platform supporting Node.js:
 - AWS Amplify
 - Digital Ocean App Platform
 
+## 🔧 Troubleshooting Vercel Deployment
+
+### Error: "Function Runtimes must have a valid version"
+
+If you encounter this error during Vercel deployment:
+
+```
+Error: Function Runtimes must have a valid version, for example `now-php@1.0.0`.
+```
+
+**This error is caused by legacy runtime configuration in your Vercel project settings, not your code.**
+
+#### Fix Steps:
+
+1. **Go to Vercel Dashboard**
+   - Navigate to your project: https://vercel.com/dashboard
+   - Select your `homedepot` project
+
+2. **Open Project Settings**
+   - Click on **Settings** tab
+   - Look for **"Functions"** section in the left sidebar
+
+3. **Remove Legacy Runtime Configuration**
+   - In the **Functions** section, look for any entries like:
+     - `now-php`
+     - `now-node` (without version)
+     - Any custom runtime without a version number
+   - **Delete or remove** any such entries
+   - **Do NOT add any custom runtime** - let Vercel auto-detect Next.js
+
+4. **Verify vercel.json**
+   - Ensure your `vercel.json` only contains:
+     ```json
+     {
+       "regions": ["iad1"]
+     }
+     ```
+   - **Do NOT** add `"functions"` or `"runtime"` fields
+
+5. **Redeploy**
+   - After removing the legacy runtime, trigger a new deployment
+   - The build should now succeed
+
+#### Why This Happens:
+
+This error occurs when Vercel detects a legacy "Function Runtime" configuration (from older Vercel deployments) that doesn't have a version specified. Next.js projects don't need custom runtime configuration - Vercel automatically detects and uses the correct Node.js runtime.
+
+#### Verification:
+
+After fixing, your build should show:
+```
+✓ Compiled successfully
+✓ Generating static pages
+✓ Build completed successfully
+```
+
+### Environment Variables Setup
+
+Make sure to configure these environment variables in **Vercel Dashboard → Settings → Environment Variables**:
+
+**Required:**
+- `MONGODB_URI` - Your MongoDB connection string
+- `JWT_SECRET` - Secret key for JWT tokens
+- `NEXTAUTH_SECRET` - NextAuth secret (if using NextAuth)
+
+**Optional (for file uploads):**
+- `CLOUDINARY_CLOUD_NAME` - Cloudinary cloud name
+- `CLOUDINARY_API_KEY` - Cloudinary API key
+- `CLOUDINARY_API_SECRET` - Cloudinary API secret
+
+**Note:** Without Cloudinary configured, resume uploads will fail in production. The upload API requires Cloudinary for production deployments on Vercel.
+
 ## 🤝 Contributing
 
 1. **Fork the repository**

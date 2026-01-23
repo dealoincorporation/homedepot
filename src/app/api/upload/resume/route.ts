@@ -89,7 +89,22 @@ export async function POST(req: Request) {
       }
     }
 
-    // Fallback to local storage (for development or if Cloudinary fails)
+    // IMPORTANT:
+    // - Vercel/serverless environments have an ephemeral filesystem; writing to `public/` is not a reliable storage strategy.
+    // - Only allow local-disk fallback in development.
+    const isVercel = !!process.env.VERCEL;
+    const isProd = process.env.NODE_ENV === 'production';
+    if (isVercel || isProd) {
+      return NextResponse.json(
+        {
+          error:
+            'Resume storage is not configured. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET on the deployment to enable uploads.',
+        },
+        { status: 500 }
+      );
+    }
+
+    // Fallback to local storage (development only)
     const uploadsDir = join(process.cwd(), 'public', 'uploads', 'resumes');
     await mkdir(uploadsDir, { recursive: true });
     const filepath = join(uploadsDir, filename);
