@@ -224,40 +224,28 @@ const Header: React.FC = () => {
               >
                 <div className="bg-[#212529] shadow-lg overflow-hidden">
                 <Link
-                  href="/featured-jobs/assistant-store-manager"
+                  href="/featured-jobs/data-entry"
                   className="block px-4 py-3 text-white text-left hover:bg-orange-600 hover:underline transition-all duration-300 ease-in-out hover:translate-x-2 normal-case font-bold border-b border-white/10"
                 >
-                  Assistant Store Manager
+                  Data Entry
                 </Link>
                 <Link
-                  href="/featured-jobs/cashier"
+                  href="/featured-jobs/payroll-clerk"
                   className="block px-4 py-3 text-white text-left hover:bg-orange-600 hover:underline transition-all duration-300 ease-in-out hover:translate-x-2 normal-case font-bold border-b border-white/10"
                 >
-                  Cashier
+                  Payroll Clerk
                 </Link>
                 <Link
-                  href="/featured-jobs/department-supervisor"
+                  href="/featured-jobs/customer-representative"
                   className="block px-4 py-3 text-white text-left hover:bg-orange-600 hover:underline transition-all duration-300 ease-in-out hover:translate-x-2 normal-case font-bold border-b border-white/10"
                 >
-                  Department Supervisor
+                  Customer Representative
                 </Link>
                 <Link
-                  href="/featured-jobs/freight-associate"
+                  href="/featured-jobs/virtual-assistant"
                   className="block px-4 py-3 text-white text-left hover:bg-orange-600 hover:underline transition-all duration-300 ease-in-out hover:translate-x-2 normal-case font-bold border-b border-white/10"
                 >
-                  Freight Associate
-                </Link>
-                <Link
-                  href="/featured-jobs/human-resources-manager"
-                  className="block px-4 py-3 text-white text-left hover:bg-orange-600 hover:underline transition-all duration-300 ease-in-out hover:translate-x-2 normal-case font-bold border-b border-white/10"
-                >
-                  Human Resources Manager
-                </Link>
-                <Link
-                  href="/featured-jobs/lot-associate"
-                  className="block px-4 py-3 text-white text-left hover:bg-orange-600 hover:underline transition-all duration-300 ease-in-out hover:translate-x-2 normal-case font-bold border-b border-white/10"
-                >
-                  Lot Associate
+                  Virtual Assistant
                 </Link>
                 <Link
                   href="/featured-jobs/merchandising-met-associate"
@@ -410,23 +398,17 @@ const Header: React.FC = () => {
                 </button>
                 {expandedMobileMenu === 'featured' && (
                   <div className="mobile-submenu">
-                    <Link href="/featured-jobs/assistant-store-manager" className="mobile-submenu-item" onClick={toggleMobileMenu}>
-                      Assistant Store Manager
+                    <Link href="/featured-jobs/data-entry" className="mobile-submenu-item" onClick={toggleMobileMenu}>
+                      Data Entry
                     </Link>
-                    <Link href="/featured-jobs/cashier" className="mobile-submenu-item" onClick={toggleMobileMenu}>
-                      Cashier
+                    <Link href="/featured-jobs/payroll-clerk" className="mobile-submenu-item" onClick={toggleMobileMenu}>
+                      Payroll Clerk
                     </Link>
-                    <Link href="/featured-jobs/department-supervisor" className="mobile-submenu-item" onClick={toggleMobileMenu}>
-                      Department Supervisor
+                    <Link href="/featured-jobs/customer-representative" className="mobile-submenu-item" onClick={toggleMobileMenu}>
+                      Customer Representative
                     </Link>
-                    <Link href="/featured-jobs/freight-associate" className="mobile-submenu-item" onClick={toggleMobileMenu}>
-                      Freight Associate
-                    </Link>
-                    <Link href="/featured-jobs/human-resources-manager" className="mobile-submenu-item" onClick={toggleMobileMenu}>
-                      Human Resources Manager
-                    </Link>
-                    <Link href="/featured-jobs/lot-associate" className="mobile-submenu-item" onClick={toggleMobileMenu}>
-                      Lot Associate
+                    <Link href="/featured-jobs/virtual-assistant" className="mobile-submenu-item" onClick={toggleMobileMenu}>
+                      Virtual Assistant
                     </Link>
                     <Link href="/featured-jobs/merchandising-met-associate" className="mobile-submenu-item" onClick={toggleMobileMenu}>
                       Merchandising "MET" Associate
@@ -451,7 +433,7 @@ const Header: React.FC = () => {
 
               <Link href="/jobs-map" className="mobile-menu-item" onClick={toggleMobileMenu}>
                 <i className="fas fa-map-marker-alt mobile-menu-icon"></i>
-                <span>View Jobs On A Map</span>
+                <span>View Jobs on a Map</span>
               </Link>
 
               <Link href="/career-events" className="mobile-menu-item" onClick={toggleMobileMenu}>

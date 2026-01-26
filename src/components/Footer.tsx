@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
           <div className="mb-6">
             <h3 className="text-base font-bold text-black mb-3">Search Jobs</h3>
             <div className="flex flex-col gap-2.5 mb-4">
-              <Link href="/jobs-on-a-map" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">View Jobs On A Map</Link>
+              <Link href="/jobs-on-a-map" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">View Jobs on a Map</Link>
               <Link href="/location" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Jobs By Location</Link>
               <Link href="/featured-jobs" className="text-black no-underline text-sm transition-colors hover:text-gray-600 block">Featured Jobs</Link>
             </div>
@@ -119,7 +119,7 @@ const Footer: React.FC = () => {
           <div className="footer-column">
             <h3><Link href="/job-search">Search Jobs</Link></h3>
             <ul>
-              <li><Link href="/jobs-on-a-map">View Jobs On A Map</Link></li>
+              <li><Link href="/jobs-on-a-map">View Jobs on a Map</Link></li>
               <li><Link href="/location">Jobs By Location</Link></li>
               <li><Link href="/featured-jobs">Featured Jobs</Link></li>
               <ul>

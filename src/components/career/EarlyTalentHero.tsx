@@ -53,16 +53,16 @@ const EarlyTalentHero: FC = () => {
           Early Talent at The Home Depot Canada
         </h1>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-row gap-3">
           <Link
             href="#build-future"
-            className="inline-block px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-base font-semibold transition-colors duration-300 text-center"
+            className="flex-1 px-4 sm:px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-sm sm:text-base font-semibold transition-colors duration-300 text-center"
           >
             Learn More
           </Link>
           <Link
             href="#jobs"
-            className="inline-block px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-base font-semibold transition-colors duration-300 text-center"
+            className="flex-1 px-4 sm:px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-sm sm:text-base font-semibold transition-colors duration-300 text-center"
           >
             Search Jobs
           </Link>

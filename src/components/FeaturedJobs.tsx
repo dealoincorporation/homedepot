@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import type { FC } from 'react';
@@ -5,44 +7,24 @@ import type { FC } from 'react';
 const FeaturedJobs: FC = () => {
   const featuredJobs = [
     {
-      title: "Assistant Store Manager",
+      title: "Data Entry",
       image: "/images/assistant-store-manager-fj.dd1dc314.webp",
-      href: "/featured-jobs/assistant-store-manager"
+      href: "/featured-jobs/data-entry"
     },
     {
-      title: "Cashier",
+      title: "Payroll Clerk",
       image: "/images/cashier-fj.dd6cbaeb.webp",
-      href: "/featured-jobs/cashier"
+      href: "/featured-jobs/payroll-clerk"
     },
     {
-      title: "Department Supervisor",
+      title: "Customer Representative",
       image: "/images/department-supervisor-fj.33264519.webp",
-      href: "/featured-jobs/department-supervisor"
+      href: "/featured-jobs/customer-representative"
     },
     {
-      title: "Freight Associate",
+      title: "Virtual Assistant",
       image: "/images/freight-associate-fj.235589f6.webp",
-      href: "/featured-jobs/freight-associate"
-    },
-    {
-      title: "Human Resources Manager",
-      image: "/images/human-resources-manager-fj.725c463c.webp",
-      href: "/featured-jobs/human-resources-manager"
-    },
-    {
-      title: "Lot Associate",
-      image: "/images/lot-associate-fj.833ed9cf.webp",
-      href: "/featured-jobs/lot-associate"
-    },
-    {
-      title: 'Merchandising "MET" Associate',
-      image: "/images/merchandising-met-associate-fj.54d6df36.webp",
-      href: "/featured-jobs/merchandising-met-associate"
-    },
-    {
-      title: "Order Picker",
-      image: "/images/order-picker-fj.6c712e3d.webp",
-      href: "/featured-jobs/order-picker"
+      href: "/featured-jobs/virtual-assistant"
     }
   ];
 
@@ -54,8 +36,8 @@ const FeaturedJobs: FC = () => {
           Featured Jobs
         </h2>
 
-        {/* Grid Layout - 2x4 */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+        {/* Grid Layout - 2x4 for Jobs */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8">
           {featuredJobs.map((job) => (
             <Link
               key={job.href}
@@ -84,6 +66,112 @@ const FeaturedJobs: FC = () => {
               </div>
             </Link>
           ))}
+        </div>
+
+        {/* Contact Information Box - Full Width */}
+        <div className="w-full border border-black bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-md">
+          {/* Title */}
+          <div className="mb-4 sm:mb-6 md:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-3">
+              Contact Our Hiring Team
+            </h2>
+            <div className="h-px bg-black w-full"></div>
+          </div>
+
+          {/* Contact Information Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {/* Hiring Manager Section */}
+            <div className="flex flex-col items-center sm:items-start">
+              <div className="w-full max-w-48 sm:max-w-56 md:max-w-64 lg:max-w-72 aspect-[3/4] mb-3 sm:mb-4 rounded-lg border-2 border-black overflow-hidden bg-gray-200 flex-shrink-0">
+                <Image
+                  src="/images/hr.jpeg"
+                  alt="Hiring Manager"
+                  width={288}
+                  height={384}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-black mb-1 sm:mb-2 text-center sm:text-left">
+                Hiring Manager
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-black text-center sm:text-left">
+                Available for inquiries and applications
+              </p>
+            </div>
+
+            {/* HR Manager 1 Section */}
+            <div className="flex flex-col items-center sm:items-start">
+              <div className="w-full max-w-48 sm:max-w-56 md:max-w-64 lg:max-w-72 aspect-[3/4] mb-3 sm:mb-4 rounded-lg border-2 border-black overflow-hidden bg-gray-200 flex-shrink-0">
+                <Image
+                  src="/images/hr_2.jpeg"
+                  alt="HR Manager"
+                  width={288}
+                  height={384}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-black mb-1 sm:mb-2 text-center sm:text-left">
+                HR Manager
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-black text-center sm:text-left">
+                Human Resources
+              </p>
+            </div>
+
+            {/* HR Coordinator Section */}
+            <div className="flex flex-col items-center sm:items-start md:col-span-2 lg:col-span-1">
+              <div className="w-full max-w-48 sm:max-w-56 md:max-w-64 lg:max-w-72 aspect-[3/4] mb-3 sm:mb-4 rounded-lg border-2 border-black overflow-hidden bg-gray-200 flex-shrink-0">
+                <Image
+                  src="/images/hr_3.jpeg"
+                  alt="HR Coordinator"
+                  width={288}
+                  height={384}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-black mb-1 sm:mb-2 text-center sm:text-left">
+                HR Coordinator
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-black text-center sm:text-left">
+                Human Resources
+              </p>
+            </div>
+          </div>
+
+          {/* Contact Details - Full Width Below */}
+          <div className="mt-6 sm:mt-8 md:mt-10 pt-4 sm:pt-6 border-t border-gray-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div>
+                <p className="text-xs sm:text-sm md:text-base font-semibold text-black mb-1 sm:mb-2">
+                  Email:
+                </p>
+                <a 
+                  href="mailto:support@thehomedepott.com" 
+                  className="text-sm sm:text-base md:text-lg text-black hover:text-orange-600 underline break-all"
+                >
+                  support@thehomedepott.com
+                </a>
+              </div>
+              
+              <div>
+                <p className="text-xs sm:text-sm md:text-base font-semibold text-black mb-1 sm:mb-2">
+                  Phone:
+                </p>
+                <p className="text-sm sm:text-base md:text-lg text-black">
+                  [Phone Number - To Be Updated]
+                </p>
+              </div>
+              
+              <div className="sm:col-span-2 lg:col-span-1">
+                <p className="text-xs sm:text-sm md:text-base font-semibold text-black mb-1 sm:mb-2">
+                  International:
+                </p>
+                <p className="text-sm sm:text-base md:text-lg text-black">
+                  [International Number - To Be Updated]
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -435,99 +435,7 @@ body {
   background: rgba(0,0,0,0.5);
 }
 
-/* Hero Section */
-.top-image {
-  background: url('/images/hero/hero-image.png') center/cover no-repeat;
-  position: relative;
-  overflow: hidden;
-  min-height: 500px;
-}
-
-.top-image .main-container {
-  position: relative;
-  z-index: 1;
-  padding: 100px 20px;
-  color: #fff;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.top-image .intro {
-  max-width: 600px;
-}
-
-.top-image .intro.left-aligned {
-  text-align: left;
-}
-
-.top-image .intro h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  line-height: 1.2;
-  color: #fff;
-}
-
-.top-image .intro p {
-  font-size: 1.25rem;
-  margin-bottom: 40px;
-  line-height: 1.6;
-  color: #fff;
-}
-
-.top-image .intro a {
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 0 10px 10px 0;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s;
-  text-align: center;
-}
-
-.top-image .intro a:first-child {
-  background: #ff6600;
-  color: #fff;
-}
-
-.top-image .intro a:first-child:hover {
-  background: #e55a00;
-}
-
-.top-image .intro a:last-child {
-  border: 2px solid #fff;
-  color: #fff;
-  background: transparent;
-}
-
-.top-image .intro a:last-child:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 768px) {
-  .top-image {
-    background: url('/images/hero/hero-image.png') center/cover no-repeat;
-    min-height: 400px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .top-image .intro h1 {
-    font-size: 2.5rem;
-  }
-
-  .top-image .intro p {
-    font-size: 1.1rem;
-  }
-
-  .top-image .intro a {
-    display: block;
-    margin: 0 0 10px 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
+/* Hero Section - Now using Tailwind CSS in HeroSection.tsx */
 
 /* Store Locations */
 .content-wrapper {
@@ -904,38 +812,7 @@ body {
   }
 }
 
-.search-jobs-btn {
-  background: #ff6600 !important;
-  border: none !important;
-  color: #fff !important;
-  padding: 12px 24px !important;
-  display: inline-block !important;
-  text-decoration: none !important;
-  font-weight: 600 !important;
-  margin-right: 15px !important;
-  margin-bottom: 10px !important;
-}
-
-.search-jobs-btn:hover {
-  background: #fff !important;
-  color: #ff6600 !important;
-}
-
-.current-associates-link {
-  background: #ff6600 !important;
-  border: none !important;
-  color: #fff !important;
-  padding: 12px 24px !important;
-  display: inline-block !important;
-  text-decoration: none !important;
-  font-weight: 600 !important;
-  margin-bottom: 10px !important;
-}
-
-.current-associates-link:hover {
-  background: #fff !important;
-  color: #ff6600 !important;
-}
+/* Hero button styles - Now using Tailwind CSS in HeroSection.tsx */
 
 /* Community Section */
 .content-wrapper.community {
