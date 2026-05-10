@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Verify your email | Careers' }) %>
+</head>
+<body>
+  <div class="preheader">Verify your email to finish setting up your careers account.</div>
+  <div class="wrap">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td align="center">
+          <div class="card">
+            <div class="accent-bar"></div>
+            <div class="inner">
+              <p class="eyebrow">Depot Prime · Careers</p>
+              <h1>Welcome — one more step</h1>
+              <p>Hi <%= typeof name !== 'undefined' && name ? name : 'there' %>,</p>
+              <p>Thanks for creating an account. Please verify your email so we can reach you about your applications and keep your account secure.</p>
+              <div class="btn-wrap" align="center">
+                <a href="<%= verifyUrl %>" class="btn" target="_blank" rel="noopener">Verify email</a>
+              </div>
+              <p class="muted">This link expires in 48 hours. If you didn’t sign up, you can ignore this email.</p>
+              <p class="link-fallback">Or paste this URL into your browser:<br /><%= verifyUrl %></p>
+            </div>
+            <%- include('partials/footer') %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  // Avoid webpack chunk/runtime errors for Node-oriented mail + template libs in Route Handlers
+  serverExternalPackages: ['nodemailer', 'resend', 'ejs'],
+
+  // Image optimization settings for Vercel deployment
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'careers.homedepot.ca',
+      },
+      {
+        protocol: 'https',
+        hostname: 'homedepot.ca',
+      },
+    ],
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+
+  // Disable experimental CSS optimization to avoid critters dependency issues
+  experimental: {
+    optimizeCss: false,
+  },
+};
+
+export default nextConfig;
