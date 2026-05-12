@@ -153,6 +153,15 @@ export function isEmailConfigured(): boolean {
   return hasSmtpConfig() || hasResendConfig();
 }
 
+/** Shown in API responses when mail cannot be sent because no transport is configured. */
+export const EMAIL_NOT_CONFIGURED =
+  'Email is not configured. Set RESEND_API_KEY and EMAIL_FROM (or SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS), redeploy, and try again.';
+
+/** True when sendEmail / sendTemplatedEmail did not actually send (no working SMTP or Resend). */
+export function isSendSkipped(result: SendEmailResult): boolean {
+  return result.skipped === true;
+}
+
 /**
  * Sends email: tries SMTP first when configured; on failure (or if SMTP missing),
  * falls back to Resend when RESEND_API_KEY is set.

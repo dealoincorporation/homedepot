@@ -4,7 +4,7 @@ import { randomBytes } from 'crypto';
 
 import { connectMongo } from '@/lib/mongoose';
 import { UserModel } from '@/models/User';
-import { sendTemplatedEmail } from '@/lib/email';
+import { sendTemplatedEmail, isSendSkipped, EMAIL_NOT_CONFIGURED } from '@/lib/email';
 import { buildVerifyEmailUrl } from '@/lib/email-templates';
 
 const BodySchema = z.object({
@@ -33,6 +33,24 @@ export async function POST(req: Request) {
   if (user && user.emailVerified === false) {
     const verifyToken = randomBytes(32).toString('hex');
     const emailVerificationExpires = new Date(Date.now() + 48 * 60 * 60 * 1000);
+    const verifyUrl = buildVerifyEmailUrl(verifyToken);
+    try {
+      const sent = await sendTemplatedEmail({
+        to: user.email,
+        subject: 'Verify your email — The Home Depot Canada Careers',
+        template: 'verification',
+        data: { name: user.name ?? '', verifyUrl },
+      });
+      if (isSendSkipped(sent)) {
+        return NextResponse.json({ error: EMAIL_NOT_CONFIGURED }, { status: 503 });
+      }
+    } catch (err) {
+      console.error('[auth/resend-verification] send failed:', err);
+      return NextResponse.json(
+        { error: 'Could not send the verification email. Please try again later.' },
+        { status: 503 },
+      );
+    }
     await UserModel.updateOne(
       { _id: user._id },
       {
@@ -42,13 +60,6 @@ export async function POST(req: Request) {
         },
       },
     );
-    const verifyUrl = buildVerifyEmailUrl(verifyToken);
-    await sendTemplatedEmail({
-      to: user.email,
-      subject: 'Verify your email — The Home Depot Canada Careers',
-      template: 'verification',
-      data: { name: user.name ?? '', verifyUrl },
-    });
   }
 
   return NextResponse.json({ ok: true });

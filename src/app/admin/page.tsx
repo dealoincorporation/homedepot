@@ -5,7 +5,9 @@ import AdminDashboard from '@/components/admin/AdminDashboard';
 export default async function AdminPage() {
   const session = await getSession();
   if (!session) redirect('/applicant-login');
-  if (session.role !== 'admin') redirect('/dashboard');
+  if (session.role !== 'admin') {
+    redirect(session.role === 'employee' ? '/associate-portal' : '/dashboard');
+  }
 
   return (
     <main className="bg-white min-h-[calc(100vh-80px)]">

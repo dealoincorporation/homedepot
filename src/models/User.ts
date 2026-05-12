@@ -22,7 +22,7 @@ const UserSchema = new Schema<UserDoc>(
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     name: { type: String, required: false, trim: true },
     passwordHash: { type: String, required: true },
-    role: { type: String, enum: ['user', 'admin'], required: true, default: 'user' },
+    role: { type: String, enum: ['user', 'admin', 'employee'], required: true, default: 'user' },
     emailVerified: { type: Boolean, required: false },
     emailVerificationToken: { type: String, required: false },
     emailVerificationExpires: { type: Date, required: false },

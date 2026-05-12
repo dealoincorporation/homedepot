@@ -4,7 +4,7 @@ import { randomBytes } from 'crypto';
 
 import { connectMongo } from '@/lib/mongoose';
 import { UserModel } from '@/models/User';
-import { sendTemplatedEmail } from '@/lib/email';
+import { sendTemplatedEmail, isSendSkipped, EMAIL_NOT_CONFIGURED } from '@/lib/email';
 import { buildResetPasswordUrl } from '@/lib/email-templates';
 
 const BodySchema = z.object({
@@ -49,8 +49,19 @@ export async function POST(req: Request) {
         data: { resetUrl },
       });
       console.info('[auth/forgot-password] send result:', JSON.stringify(result));
+      if (isSendSkipped(result)) {
+        console.error('[auth/forgot-password] email transport not configured (skipped)');
+        return NextResponse.json({ error: EMAIL_NOT_CONFIGURED }, { status: 503 });
+      }
     } catch (err) {
-      console.error('[auth/forgot-password] send failed (user still gets generic ok response):', err);
+      console.error('[auth/forgot-password] send failed:', err);
+      return NextResponse.json(
+        {
+          error:
+            'We could not send a recovery email right now. Check spam, or try again in a few minutes. If it keeps failing, contact support.',
+        },
+        { status: 503 },
+      );
     }
   } else {
     console.info(

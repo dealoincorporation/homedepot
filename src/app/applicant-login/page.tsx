@@ -139,7 +139,9 @@ function ApplicantLoginContent() {
           return;
         }
 
-        router.push(role === 'admin' ? '/admin' : '/dashboard');
+        router.push(
+          role === 'admin' ? '/admin' : role === 'employee' ? '/associate-portal' : '/dashboard',
+        );
       } catch (parseError: any) {
         if (parseError.message && parseError.message !== 'Something went wrong') {
           errorMessage = parseError.message;

@@ -7,7 +7,7 @@ import { ApplicationModel } from '@/models/Application';
 import { UserModel } from '@/models/User';
 import { MessageModel } from '@/models/Message';
 import { parseAdminEmails } from '@/lib/auth';
-import { sendEmail } from '@/lib/email';
+import { sendEmail, isSendSkipped, EMAIL_NOT_CONFIGURED } from '@/lib/email';
 
 const WorkExperienceSchema = z.object({
   company: z.string().min(1),
@@ -101,29 +101,47 @@ export async function POST(req: Request) {
     body: `Application created for "${app.jobTitle}"`,
   });
 
-  // Email notifications (optional)
+  // Email notifications
   const admins = Array.from(parseAdminEmails());
   const user = await UserModel.findById(session.sub).lean();
   const userEmail = user?.email ?? session.email;
 
-  if (admins.length > 0) {
-    const applicantName = app.firstName && app.lastName 
-      ? `${app.firstName} ${app.lastName}` 
-      : userEmail;
-    await sendEmail({
-      to: admins.join(','),
-      subject: `New application: ${app.jobTitle}`,
-      text: `A new application has been submitted.\n\nApplicant: ${applicantName} (${userEmail})\nJob: ${app.jobTitle}\nLocation: ${app.jobAddress ?? 'N/A'}\nReqId: ${app.reqId ?? '-'}\nPhone: ${app.phone ?? 'N/A'}\n\nView details in the admin dashboard.`,
-    });
-  }
+  try {
+    if (admins.length > 0) {
+      const applicantName =
+        app.firstName && app.lastName ? `${app.firstName} ${app.lastName}` : userEmail;
+      const adminResult = await sendEmail({
+        to: admins.join(','),
+        subject: `New application: ${app.jobTitle}`,
+        text: `A new application has been submitted.\n\nApplicant: ${applicantName} (${userEmail})\nJob: ${app.jobTitle}\nLocation: ${app.jobAddress ?? 'N/A'}\nReqId: ${app.reqId ?? '-'}\nPhone: ${app.phone ?? 'N/A'}\n\nView details in the admin dashboard.`,
+      });
+      if (isSendSkipped(adminResult)) {
+        throw new Error('EMAIL_SKIP');
+      }
+    }
 
-    await sendEmail({
+    const applicantResult = await sendEmail({
       to: userEmail,
       subject: `We received your application: ${app.jobTitle}`,
       text: `Thanks for applying to The Home Depot Canada.\n\nJob: ${app.jobTitle}\nStatus: Applied\n\nYou can track your application in your dashboard.`,
     });
+    if (isSendSkipped(applicantResult)) {
+      throw new Error('EMAIL_SKIP');
+    }
+  } catch (mailErr) {
+    console.error('POST /api/applications email error:', mailErr);
+    await MessageModel.deleteMany({ applicationId: app._id });
+    await ApplicationModel.deleteOne({ _id: app._id });
+    const isSkip = mailErr instanceof Error && mailErr.message === 'EMAIL_SKIP';
+    return NextResponse.json(
+      {
+        error: isSkip ? EMAIL_NOT_CONFIGURED : 'Could not send application emails. Please try again later.',
+      },
+      { status: 503 },
+    );
+  }
 
-    return NextResponse.json({ ok: true, applicationId: app._id.toString() }, { status: 201 });
+  return NextResponse.json({ ok: true, applicationId: app._id.toString() }, { status: 201 });
   } catch (err: any) {
     console.error('POST /api/applications error:', err);
     return NextResponse.json(

@@ -6,7 +6,7 @@ import { randomBytes } from 'crypto';
 import { connectMongo } from '@/lib/mongoose';
 import { UserModel } from '@/models/User';
 import { hashPassword, parseAdminEmails, setSessionCookie, signSession } from '@/lib/auth';
-import { sendTemplatedEmail } from '@/lib/email';
+import { sendTemplatedEmail, isSendSkipped, EMAIL_NOT_CONFIGURED } from '@/lib/email';
 import { buildVerifyEmailUrl } from '@/lib/email-templates';
 
 const BodySchema = z.object({
@@ -61,20 +61,39 @@ export async function POST(req: Request) {
     });
 
     const verifyUrl = buildVerifyEmailUrl(verifyToken);
-    if (role !== 'admin') {
-      await sendTemplatedEmail({
-        to: user.email,
-        subject: 'Welcome — verify your email | The Home Depot Canada Careers',
-        template: 'welcome-verify',
-        data: { name: name ?? '', verifyUrl },
-      });
-    } else {
-      await sendTemplatedEmail({
-        to: user.email,
-        subject: 'Welcome | The Home Depot Canada Careers',
-        template: 'welcome',
-        data: { name: name ?? '', preheader: 'Your administrator account is ready.' },
-      });
+    try {
+      if (role !== 'admin') {
+        const sent = await sendTemplatedEmail({
+          to: user.email,
+          subject: 'Welcome — verify your email | The Home Depot Canada Careers',
+          template: 'welcome-verify',
+          data: { name: name ?? '', verifyUrl },
+        });
+        if (isSendSkipped(sent)) {
+          await UserModel.deleteOne({ _id: user._id });
+          return NextResponse.json({ error: EMAIL_NOT_CONFIGURED }, { status: 503 });
+        }
+      } else {
+        const sent = await sendTemplatedEmail({
+          to: user.email,
+          subject: 'Welcome | The Home Depot Canada Careers',
+          template: 'welcome',
+          data: { name: name ?? '', preheader: 'Your administrator account is ready.' },
+        });
+        if (isSendSkipped(sent)) {
+          console.warn('[auth/register] welcome email skipped (no transport); admin account still created');
+        }
+      }
+    } catch (mailErr) {
+      if (role !== 'admin') {
+        await UserModel.deleteOne({ _id: user._id });
+        console.error('[auth/register] verification email failed:', mailErr);
+        return NextResponse.json(
+          { error: 'Could not send the verification email. Please try again in a few minutes.' },
+          { status: 503 },
+        );
+      }
+      console.error('[auth/register] admin welcome email failed:', mailErr);
     }
 
     const cookieStore = await cookies();

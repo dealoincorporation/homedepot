@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
-export type AuthRole = 'user' | 'admin';
+export type AuthRole = 'user' | 'admin' | 'employee';
 
 export type SessionPayload = {
   sub: string; // user id
